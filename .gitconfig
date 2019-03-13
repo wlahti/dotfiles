@@ -1,0 +1,45 @@
+[alias]
+	branch = branch -vv
+	# ci = duet-commit
+	ci = commit -s
+	co = checkout
+	flog = log --pretty=fuller --decorate
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	llog = log --date=local
+	lol = log --graph --decorate --oneline
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --oneline --all
+	st = status
+	untracked = ls-files --others --exclude-standard
+[color]
+	ui = true
+[color "diff"]
+	frag = magenta
+	func = blue
+	meta = cyan
+	new = green
+	old = red
+[core]
+	autocrlf = input
+[diff]
+	compactionHeuristic = true
+[format]
+	pretty = full
+[github]
+	user = sykesm
+[push]
+	default = current
+	recurseSubmodules = on-demand
+[status]
+	submoduleSummary = true
+[submodule]
+	fetchJobs = 0
+[user]
+	name = Matthew Sykes
+	email = matthew.sykes@gmail.com
+[url "git@github.com:"]
+	pushInsteadOf = https://github.com/
+[url "git@github.ibm.com:"]
+	insteadOf = https://github.ibm.com/
+[http "https://gopkg.in"]
+	followRedirects = true
