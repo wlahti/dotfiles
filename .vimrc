@@ -106,7 +106,6 @@ set smartindent                        " smart indenting when starting a new lin
 set smarttab                           " insrt blanks on <tab> according to shiftwidth
 set softtabstop=2                      " spaces that a <tab> counts for while editing
 set tabstop=4                          " treat a tab as 4 spaces
-set tags=tags,./tags,~/workspace/diego-release/tags,"$JAVA_HOME"/src/tags
 set undofile                           " keep an undo file (undo changes after closing)
 set updatetime=300                     " write to swap after 300ms
 set wildmenu                           " enhanced mode of command line completion

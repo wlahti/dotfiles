@@ -1,4 +1,5 @@
-# Display possible completions using different colors # to indicate their file type
+# Display possible completions using different colors
+# to indicate their file type
 set colored-stats on
 
 # Make Tab autocomplete regardless of filename case
@@ -34,6 +35,6 @@ set convert-meta off
 # Flip through autocompletion matches with Shift-Tab.
 "\e[Z": menu-complete
 
-# Filtered history search
+# Filtered history search with up/down arrows
 "\e[A": history-search-backward
 "\e[B": history-search-forward
