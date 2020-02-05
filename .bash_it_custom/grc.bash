@@ -36,6 +36,7 @@ if [[ -x "$(command -v grc)" ]]; then
         alias lspci='colourify lspci'
         alias netstat='colourify netstat'
         alias ping='colourify ping'
+        alias ping6='colourify ping'
         alias traceroute='colourify traceroute'
         alias traceroute6='colourify traceroute6'
         alias head='colourify head'

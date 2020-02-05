@@ -353,7 +353,7 @@ let g:go_highlight_string_spellcheck = 0
 let g:go_highlight_structs = 0
 let g:go_test_timeout = "30s"
 let g:go_gocode_propose_source = 1
-if empty($GOPATH)
+if !empty($GOPATH)
   let g:go_def_mode = "godef" " temporary workaround until guru is fixed
 endif
 
