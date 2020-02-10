@@ -7,8 +7,11 @@ colour=green
 regexp=^PASS$
 colour=green
 =======
-regexp=^(ok|\?) .*
-colour=magenta
+regexp=^\? .*(\[no test files\])
+colour=white
+=======
+regexp=^(ok) .*
+colour=magenta, green
 =======
 regexp=--- FAIL: .*
 colour=bold red
@@ -21,3 +24,24 @@ colour=cyan
 =======
 regexp=^goroutine\s+(\d+)\s+.*:
 colour=bold white
+=======
+regexp=^\s*panic: .*
+colour=red
+=======
+regexp=(\(cached\)|(\s+\d+\.\d+s))
+colour=bold cyan
+=======
+regexp=\[no tests to run\]
+colour=bold yellow
+=======
+# coverage: >= 85% of statements
+regexp=coverage: ((100|9\d|8[5-9])\.\d+%) of statements
+colour=unchanged, green
+=======
+# coverage: 75.0% >= && < 85.0% of statements
+regexp=coverage: ((7[5-9]|8[0-4])\.\d+%) of statements
+colour=unchanged, yellow
+=======
+# coverage: [no statements], <75.0%
+regexp=coverage: (\[no statements\]|([0-6]\d|7[0-4])\.\d+%) of statements
+colour=unchanged, bold red

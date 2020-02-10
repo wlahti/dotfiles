@@ -1,3 +1,6 @@
+# Use visible bell if available
+set bell-style visible
+
 # Display possible completions using different colors
 # to indicate their file type
 set colored-stats on

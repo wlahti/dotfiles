@@ -1,0 +1,7 @@
+====
+regexp=([^\s]+\.go)(:\d+)?(:\d+)?:\s+(.*)
+colours=default,yellow,blue,cyan,red
+====
+regexp=^#.*
+colours=green
+
