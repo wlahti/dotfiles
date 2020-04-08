@@ -3,7 +3,11 @@ set bell-style visible
 
 # Display possible completions using different colors
 # to indicate their file type
-set colored-stats on
+set colored-stats off
+
+# Display the common prefix of possible completions in a
+# different color
+set colored-completion-prefix on
 
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on
