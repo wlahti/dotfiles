@@ -19,8 +19,6 @@ Plug 'fatih/molokai'
 Plug 'fatih/vim-nginx' , {'for' : 'nginx'}
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-hashicorp-tools'
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-" Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
@@ -385,33 +383,6 @@ autocmd Filetype go nnoremap <leader>gd :GoDescribe<CR>
 autocmd Filetype go nnoremap <leader>gs :sp <CR>:exe "GoDef"<CR>
 autocmd Filetype go nnoremap <leader>gt :tab split <CR>:exe "GoDef"<CR>
 autocmd Filetype go nnoremap <leader>gv :vsp <CR>:exe "GoDef" <CR>
-
-" " ==================== FZF ====================
-" let g:fzf_command_prefix = 'Fzf'
-" let g:fzf_layout = { 'down': '~20%' }
-
-" " search
-" nmap <C-p> :FzfHistory<cr>
-" imap <C-p> <esc>:<C-u>FzfHistory<cr>
-
-" " search across files in the current directory
-" nmap <C-b> :FzfFiles<cr>
-" imap <C-b> <esc>:<C-u>FzfFiles<cr>
-
-" let g:rg_command = '
-"   \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
-"   \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf}"
-"   \ -g "!{.git,node_modules,vendor}/*" '
-
-" command! -bang -nargs=* Rg
-"   \ call fzf#vim#grep(
-"   \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-"   \   <bang>0 ? fzf#vim#with_preview('up:60%')
-"   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-"   \   <bang>0)
-
-" command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
-
 
 " ==================== ag ====================
 let g:ackprg = 'ag --vimgrep --smart-case'
