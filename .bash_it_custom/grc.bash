@@ -1,10 +1,9 @@
-# shellcheck shell=bash
-# shellcheck disable=SC2139
+# shellcheck shell=bash disable=SC1090,SC1091,SC2139
 # vi: set ft=sh:
 
 # setup grc if the config file exists
 if [[ -x "$(command -v grc)" ]]; then
-    if [[ -x "$(command -v brew)" ]] && [[ -f "$(brew --prefix grc)/etc/grc.bashrc" ]]; then
+    if [[ "$(uname)" == "Darwin" ]] && [[ -x "$(command -v brew)" ]] && [[ -f "$(brew --prefix grc)/etc/grc.bashrc" ]]; then
         source "$(brew --prefix grc)/etc/grc.bashrc"
     elif [[ -f /etc/grc.bashrc ]]; then
         source /etc/grc.bashrc

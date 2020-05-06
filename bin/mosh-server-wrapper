@@ -21,7 +21,7 @@ declare -i port=0 n
 # Check if we have been given a port via the -p option.
 #
 for (( n = 1; n <= $#; n++ )); do
-  if [ ${!n} = "-p" ]; then n=$((n+1)); port=${!n}; fi
+  if [ "${!n}" = "-p" ]; then n=$((n+1)); port=${!n}; fi
 done
 
 # If we don't have a valid port yet, find one that is not in
@@ -32,7 +32,7 @@ if [ $port -ne 0 ]; then
   fixed_port=true
 else
   for (( port = 61000; port > 0; port-- )); do
-    if ! netstat -l -n -u | grep -F -q 0.0.0.0:$port; then
+    if ! netstat -l -n -u | grep -F -q "0.0.0.0:$port"; then
       if ! upnpc -l | grep -F -q " UDP $port-"; then
         break; # Found one!
       fi
@@ -46,18 +46,18 @@ fi
 
 # Redirect the port in the NAT router
 #
-upnpc -r $port udp >/dev/null || echo "Failed to redirect port $port. Continuing anyway..." >&2
+upnpc -r "$port" udp >/dev/null || echo "Failed to redirect port $port. Continuing anyway..." >&2
 
 # Make a program that executes a shell, removes the port direction
 # when the shell exits, and finally removes itself.
 #
 UPNP_SHELL=$(mktemp) || die "Error: Cannot create temporary file."
-cat >"$UPNP_SHELL" <<-EOF
-	#!$SHELL
-	trap "rm $UPNP_SHELL" 0
-	$SHELL
-	upnpc -d $port udp >/dev/null
-	EOF
+cat >"$UPNP_SHELL" <<EOF
+#!$SHELL
+trap "rm $UPNP_SHELL" 0
+$SHELL
+upnpc -d $port udp >/dev/null
+EOF
 chmod +x "$UPNP_SHELL"
 
 # Start mosh-server
@@ -65,5 +65,5 @@ chmod +x "$UPNP_SHELL"
 if [ "$fixed_port" ]; then
   /usr/bin/mosh-server "$@" -- "$UPNP_SHELL"
 else
-  /usr/bin/mosh-server "$@" -p $port -- "$UPNP_SHELL"
+  /usr/bin/mosh-server "$@" -p "$port" -- "$UPNP_SHELL"
 fi

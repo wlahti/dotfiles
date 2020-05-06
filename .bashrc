@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck shell=bash disable=SC1090,SC1091
 
 # If not running interactively, don't do anything
 case $- in
@@ -21,8 +22,8 @@ export THEME_CHECK_SUDO=false
 # cloned bash-it with a remote other than origin such as `bash-it`.
 # export BASH_IT_REMOTE='bash-it'
 
-# Your place for hosting Git repos. I use this for private repos.
-export GIT_HOSTING='git@git.domain.com'
+# Your place for hosting Git repos. Used by the git plugin.
+export GIT_HOSTING='git@github.com'
 
 # Don't check mail when opening terminal.
 unset MAILCHECK
@@ -43,6 +44,7 @@ export SCM_CHECK=true
 
 export BASH_IT_CUSTOM=${HOME}/.bash_it_custom
 
+# Create a command to manage dotfile changes.
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # Load Bash It

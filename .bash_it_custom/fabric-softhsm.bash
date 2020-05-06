@@ -1,7 +1,7 @@
 # shellcheck shell=bash
 # vi: set ft=sh:
 
-if [[ -x "$(command -v brew)" ]]; then
+if [[ "$(uname)" == "Darwin" ]] && [[ -x "$(command -v brew)" ]]; then
     PKCS11_LIB="$(brew list -lv1 softhsm | grep libsofthsm2.so)"
 else
     PKCS11_LIB="$(find /usr/lib -name libsofthsm2.so | head -1)"
