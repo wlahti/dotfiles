@@ -10,10 +10,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'cespare/vim-toml'
-Plug 'corylanou/vim-present', {'for' : 'present'}
-Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
-Plug 'elzr/vim-json', {'for' : 'json'}
-Plug 'fatih/vim-go'
+Plug 'corylanou/vim-present', {'for': 'present'}
+Plug 'ekalinin/Dockerfile.vim', {'for': 'Dockerfile'}
+Plug 'elzr/vim-json', {'for': 'json'}
+Plug 'fatih/vim-go', {'for': ['go', 'gomod', 'gotexttmpl', 'gohtmltmpl']}
 Plug 'fatih/vim-hclfmt'
 Plug 'fatih/molokai'
 Plug 'fatih/vim-nginx' , {'for' : 'nginx'}
@@ -209,20 +209,12 @@ nnoremap <silent> <C-h> <c-w>h
 nnoremap <silent> <C-k> <c-w>k
 nnoremap <silent> <C-j> <c-w>j
 
-" Some useful quickfix shortcuts for quickfix
-map <C-n> :cn<CR>
-map <C-m> :cp<CR>
-nnoremap <leader>a :cclose<CR>
-
 " put quickfix window always to the bottom
 augroup quickfix
     autocmd!
     autocmd FileType qf wincmd J
     autocmd FileType qf setlocal wrap
 augroup END
-
-" Enter automatically into the files directory
-autocmd BufEnter * silent! lcd %:p:h
 
 " Close all but the current one
 nnoremap <leader>o :only<CR>
@@ -321,8 +313,12 @@ let g:netrw_ftpmode="ascii"
 " ==================== vim-json ====================
 let g:vim_json_syntax_conceal=0        " Disable double quote hiding
 
+" =================== Terraform ====================
+let g:terraform_align=1
+
 " ==================== supertab ====================
 let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 
 " save on focus loss in gui
 autocmd FocusLost * silent! wa
@@ -337,10 +333,23 @@ autocmd BufReadPost *
 " disables the 197 return code on focus
 let $GINKGO_EDITOR_INTEGRATION = "true"
 
-let g:go_auto_type_info = 0
 let g:go_bin_path = expand("~/.gotools")
+if has("unix")
+  let $PATH = g:go_bin_path . ':' . $PATH
+else
+  let $PATH = g:go_bin_path . ';' . $PATH
+endif
+
+let g:go_autodetect_gopath = 1
+let g:go_auto_sameids = 0
+let g:go_auto_type_info = 0
+let g:go_diagnostics_enabled = 1
+let g:go_doc_popup_window = 0
+let g:go_echo_command_info = 1
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
+let g:go_gocode_propose_source = 1
+let g:go_gopls_complete_unimported = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_format_strings = 1
@@ -350,29 +359,17 @@ let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_string_spellcheck = 0
 let g:go_highlight_structs = 0
+let g:go_implements_mode='gopls'
+let g:go_info_mode = 'gopls'
+let g:go_list_type = "quickfix"
+let g:go_rename_command='gopls'
+let g:go_test_prepend_name = 1
 let g:go_test_timeout = "30s"
-let g:go_gocode_propose_source = 1
-if !empty($GOPATH)
-  let g:go_def_mode = "godef" " temporary workaround until guru is fixed
-endif
 
-if has("unix")
-  let $PATH = g:go_bin_path . ':' . $PATH
-else
-  let $PATH = g:go_bin_path . ';' . $PATH
-endif
 let g:go_debug_windows = {
       \ 'vars':  'leftabove 35vnew',
       \ 'stack': 'botright 10new',
 \ }
-
-let g:go_test_prepend_name = 1
-let g:go_list_type = "quickfix"
-let g:go_auto_type_info = 0
-let g:go_auto_sameids = 0
-let g:go_info_mode = "gocode"
-let g:go_echo_command_info = 1
-let g:go_autodetect_gopath = 1
 
 autocmd FileType go compiler go
 autocmd FileType go setlocal noexpandtab shiftwidth=2 tabstop=2 softtabstop=2
@@ -398,10 +395,7 @@ let g:vim_markdown_new_list_item_indent = 2
 let g:vim_markdown_no_extensions_in_markdown = 1
 
 " ==================== Various other plugin settings ====================
-nmap  -  <Plug>(choosewin)
-
-" Trigger a highlight in the appropriate direction when pressing these keys:
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+nmap - <Plug>(choosewin)
 
 " https://stackoverflow.com/questions/4097259/in-vim-how-do-i-highlight-todo-and-fixme
 augroup vimrc_todo
