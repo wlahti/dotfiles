@@ -1,0 +1,16 @@
+# Ignored from dotfiles.
+# sorted by `sort -f`
+
+/.cache/
+/.Trash/
+/.vim/plugged/
+/Desktop/
+/Documents/
+/Downloads/
+/go/bin/
+/go/pkg/
+/Library/
+/Movies/
+/Music/
+/Pictures/
+/Public/

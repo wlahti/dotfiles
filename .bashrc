@@ -45,7 +45,7 @@ export SCM_CHECK=true
 export BASH_IT_CUSTOM=${HOME}/.bash_it_custom
 
 # Create a command to manage dotfile changes.
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dotfiles='git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
 
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
