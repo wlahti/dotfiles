@@ -1,16 +1,22 @@
 # Ignored from dotfiles.
 # sorted by `sort -f`
 
+/.bash_it/
 /.cache/
-/.Trash/
-/.vim/plugged/
 /Desktop/
 /Documents/
+/.dotfiles/
 /Downloads/
 /go/bin/
 /go/pkg/
 /Library/
 /Movies/
 /Music/
+/.oh-my-zsh/
 /Pictures/
 /Public/
+/.tmux/plugins/
+/.Trash/
+/.vim/backups/
+/.vim/plugged/
+/.vim/undo/
