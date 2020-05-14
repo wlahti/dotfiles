@@ -28,6 +28,10 @@ ssh-agent, the following will clone the dotfiles, populate `$HOME`, install
         git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
     fi
 
+    if [ ! -d ~/.zsh-syntax-highlighting ]; then
+        git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting
+    fi
+
     if [ ! -d ~/.tmux/plugins/tpm ]; then
         git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
         ~/.tmux/plugins/tpm/bin/install_plugins
@@ -104,6 +108,7 @@ material.
     - vim
     - wget
     - zip
+    - zsh
     package_update: true
     package_upgrade: true
     package_reboot_if_required: true
@@ -206,6 +211,14 @@ material.
             git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
             ~/.bash_it/install.sh --silent --no-modify-config
             echo 'bash-it enable completion ssh terraform tmux' | bash -i
+        fi
+
+        if [ ! -d ~/.oh-my-zsh ]; then
+            git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+        fi
+
+        if [ ! -d ~/.zsh-syntax-highlighting ]; then
+            git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting
         fi
     
         if [ ! -d ~/.tmux/plugins/tpm ]; then

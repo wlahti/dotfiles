@@ -1,5 +1,4 @@
-# shellcheck shell=zsh
-# vi: set ft=sh:
+# vi: set ft=zsh:
 
 # Test if we should support color
 if [ -n "$TERM" ] && [ -t 1 ] && [ "$(tput colors)" -ge "8" ]; then

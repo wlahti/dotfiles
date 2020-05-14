@@ -181,7 +181,7 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.proto setlocal expandtab shiftwidth=2 tabstop=2
 
   autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
-  autocmd FileType markdown setlocal spell textwidth=78
+  autocmd FileType markdown setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 spell textwidth=78
   autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
   autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
   autocmd FileType text setlocal spell textwidth=78

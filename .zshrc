@@ -70,7 +70,13 @@ ZSH_CUSTOM="$HOME/.oh-my-zsh-custom"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+    direnv
+    docker
+    git
+    go
+    grc
+)
 
 source "$ZSH/oh-my-zsh.sh"
 
@@ -80,3 +86,8 @@ source "$ZSH/oh-my-zsh.sh"
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 alias dotfiles='git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
+alias ls='ls --color=auto'
+
+if [ -d "$HOME/.zsh-syntax-highlighting" ]; then
+    source "$HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
