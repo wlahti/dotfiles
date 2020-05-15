@@ -22,6 +22,7 @@ Plug 'hashivim/vim-hashicorp-tools'
 Plug 'mileszs/ack.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
+Plug 'sykesm/vim-osc52'
 Plug 't9md/vim-choosewin'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
@@ -409,6 +410,12 @@ hi def link MyTodo Todo
 " Only define it when not defined already.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
+endif
+
+if !has("gui_running") && !empty($SSH_CLIENT)
+  nnoremap <silent> yy :<C-U>call YankToTerminalClipboard('yy')<CR>
+  nnoremap <silent> y :set operatorfunc=YankToTerminalClipboard<CR>g@
+  vnoremap <silent> y :<C-U>call YankToTerminalClipboard(visualmode(), 1)<CR>
 endif
 
 " vim: sw=2 sw=2 et
