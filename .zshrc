@@ -86,7 +86,6 @@ source "$ZSH/oh-my-zsh.sh"
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 alias dotfiles='git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
-alias ls='ls --color=auto'
 
 if [ -d "$HOME/.zsh-syntax-highlighting" ]; then
     source "$HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
