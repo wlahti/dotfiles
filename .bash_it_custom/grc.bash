@@ -65,7 +65,7 @@ if [[ -x "$(command -v grc)" ]]; then
     alias colourify="$GRC -es --colour=auto"
     # Set alias for available commands.
     for cmd in "${cmds[@]}"; do
-        if $(command -v "$cmd" >/dev/null 2>&1); then
+        if [ -x "$(command -v "$cmd" 2>>/dev/null)" ]; then
             alias "$cmd=grc --colour=auto $cmd"
         fi
     done
