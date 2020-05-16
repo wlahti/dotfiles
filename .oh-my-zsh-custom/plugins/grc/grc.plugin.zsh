@@ -28,15 +28,17 @@ if (( $+commands[grc] )); then
         head
         id
         ifconfig
+        iostat
         ip
         iptables
         iwconfig
         last
         ld
         ldap
-        ls
+        lsattr
         lsblk
         lsof
+        lsmod
         lspci
         make
         mount
@@ -45,10 +47,17 @@ if (( $+commands[grc] )); then
         ping
         ping6
         ps
+        sar
         semanage
+        stat
+        systemctl
         tail
+        tcpdump
         traceroute
         traceroute6
+        ulimit
+        uptime
+        vmstat
         wdiff
         whois
     )
