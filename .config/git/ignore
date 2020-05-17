@@ -2,16 +2,16 @@
 ######################
 .DS_Store
 .DS_Store?
-._*
 .Spotlight-V100
 .Trashes
+._*
 ehthumbs.db
 Thumbs.db
 
 # Backup files 
 ######################
-*~
 *.bak
+*~
 
 # Tags
 ######################
