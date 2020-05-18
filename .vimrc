@@ -128,14 +128,6 @@ if !has('nvim')
   set ttyscroll=3
 endif
 
-" Configuration for all graphical front ends
-if has("gui_running")
-  " Use curly underline for spelling
-  highlight SpellBad term=underline gui=undercurl guisp=Orange
-  set mouse=a
-  behave xterm
-end
-
 " Tell syntax we're using a dark background
 highlight Normal guibg=black guifg=white
 set background=dark
@@ -159,6 +151,14 @@ endif
 if &t_Co > 2 || has("gui_running")
   syntax on
 endif
+
+" Configuration for all graphical front ends
+if has("gui_running")
+  " Use curly underline for spelling
+  highlight SpellBad term=underline gui=undercurl guifg=NONE guibg=NONE guisp=Red
+  set mouse=a
+  behave xterm
+end
 
 "=====================================================
 "============== FILETYPE DETECTION ===================
