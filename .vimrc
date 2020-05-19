@@ -123,14 +123,13 @@ if has("gui_running") || (&term =~ "xterm")
   set ttyfast
 endif
 
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
+" Switch syntax highlighting on when the terminal has colors.
 if &t_Co > 2 || has("gui_running")
   syntax on
 endif
 
-" enable 24 bit colors in terminal
-if has('termguicolors') && (&term =~ "tmux-256color" || &term =~ "xterm")
+" enable 24 bit colors in iTerm
+if has('termguicolors') && $LC_TERMINAL =~ "iTerm"
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
@@ -172,30 +171,28 @@ end
 filetype plugin indent on
 
 augroup filetypedetect
-  autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
-  autocmd BufNewFile,BufRead .nginx.conf*,nginx.conf* setf nginx
-  autocmd BufNewFile,BufRead *.hcl setf conf
-  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-
-  autocmd BufRead,BufNewFile *.gotmpl set filetype=gotexttmpl
-
-  autocmd BufNewFile,BufRead *.ino setlocal noet ts=4 sw=4 sts=4
-  autocmd BufNewFile,BufRead *.txt setlocal noet ts=4 sw=4
-  autocmd BufNewFile,BufRead *.md setlocal noet ts=4 sw=4
-  autocmd BufNewFile,BufRead *.html setlocal noet ts=4 sw=4
-  autocmd BufNewFile,BufRead *.vim setlocal expandtab shiftwidth=2 tabstop=2
-  autocmd BufNewFile,BufRead *.hcl setlocal expandtab shiftwidth=2 tabstop=2
-  autocmd BufNewFile,BufRead *.sh setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd BufNewFile,BufRead *.hcl   setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd BufNewFile,BufRead *.html  setlocal noet ts=4 sw=4
+  autocmd BufNewFile,BufRead *.ino   setlocal noet ts=4 sw=4 sts=4
+  autocmd BufNewFile,BufRead *.md    setlocal noet ts=4 sw=4
   autocmd BufNewFile,BufRead *.proto setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd BufNewFile,BufRead *.sh    setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd BufNewFile,BufRead *.txt   setlocal noet ts=4 sw=4
+  autocmd BufNewFile,BufRead *.vim   setlocal expandtab shiftwidth=2 tabstop=2
 
-  autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd BufNewFile,BufRead *.gotmpl setfiletype gotexttmpl
+  autocmd BufNewFile,BufRead *.hcl setfiletype conf
+  autocmd BufNewFile,BufRead .nginx.conf*,nginx.conf* setfiletype nginx
+  autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* setfiletype tmux
+
+  autocmd FileType json     setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType markdown setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 spell textwidth=78
-  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-  autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
-  autocmd FileType text setlocal spell textwidth=78
-  autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=4
-  autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
-  autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+  autocmd FileType python   setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+  autocmd FileType ruby     setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+  autocmd FileType text     setlocal spell textwidth=78
+  autocmd FileType vim      setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=4
+  autocmd FileType xml      setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+  autocmd FileType yaml     setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
   autocmd FileType gitcommit setlocal spell
   autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
@@ -379,16 +376,19 @@ let g:go_debug_windows = {
       \ 'stack': 'botright 10new',
 \ }
 
-autocmd FileType go compiler go
-autocmd FileType go setlocal noexpandtab shiftwidth=2 tabstop=2 softtabstop=2
-autocmd Filetype go set makeprg=go\ build\ ./...
-autocmd Filetype go nnoremap <buffer> <leader>i :exe 'GoImport ' . expand('<cword>')<CR>
-autocmd Filetype go nnoremap <buffer>gd :GoDef<CR>
-autocmd Filetype go nnoremap <leader>r :GoRun %<CR>
-autocmd Filetype go nnoremap <leader>gd :GoDescribe<CR>
-autocmd Filetype go nnoremap <leader>gs :sp <CR>:exe "GoDef"<CR>
-autocmd Filetype go nnoremap <leader>gt :tab split <CR>:exe "GoDef"<CR>
-autocmd Filetype go nnoremap <leader>gv :vsp <CR>:exe "GoDef" <CR>
+augroup golang
+  autocmd!
+  autocmd FileType go compiler go
+  autocmd FileType go setlocal noexpandtab shiftwidth=2 tabstop=2 softtabstop=2
+  autocmd Filetype go set makeprg=go\ build\ ./...
+  autocmd Filetype go nnoremap <buffer> <leader>i :exe 'GoImport ' . expand('<cword>')<CR>
+  autocmd Filetype go nnoremap <buffer>gd :GoDef<CR>
+  autocmd Filetype go nnoremap <leader>r :GoRun %<CR>
+  autocmd Filetype go nnoremap <leader>gd :GoDescribe<CR>
+  autocmd Filetype go nnoremap <leader>gs :sp <CR>:exe "GoDef"<CR>
+  autocmd Filetype go nnoremap <leader>gt :tab split <CR>:exe "GoDef"<CR>
+  autocmd Filetype go nnoremap <leader>gv :vsp <CR>:exe "GoDef" <CR>
+augroup END
 
 " ==================== ag ====================
 let g:ackprg = 'ag --vimgrep --smart-case'
@@ -408,8 +408,8 @@ nmap - <Plug>(choosewin)
 
 " https://stackoverflow.com/questions/4097259/in-vim-how-do-i-highlight-todo-and-fixme
 augroup vimrc_todo
-    au!
-    au Syntax * syn match MyTodo /\v<(FIXME|NOTE|TODO|OPTIMIZE|XXX|MJS)/ containedin=.*Comment,vimCommentTitle
+    autocmd!
+    autocmd Syntax * syn match MyTodo /\v<(FIXME|NOTE|TODO|OPTIMIZE|XXX|MJS)/ containedin=.*Comment,vimCommentTitle
 augroup END
 hi def link MyTodo Todo
 
