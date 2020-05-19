@@ -123,6 +123,19 @@ if has("gui_running") || (&term =~ "xterm")
   set ttyfast
 endif
 
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+  syntax on
+endif
+
+" enable 24 bit colors in terminal
+if has('termguicolors') && (&term =~ "tmux-256color" || &term =~ "xterm")
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
 if !has('nvim')
   set ttymouse=xterm2
   set ttyscroll=3
@@ -144,12 +157,6 @@ else
   highlight LineNr ctermfg=DarkGrey
   highlight CursorLineNr cterm=bold ctermfg=Yellow
   highlight CursorLine cterm=none
-endif
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
 endif
 
 " Configuration for all graphical front ends
@@ -387,13 +394,14 @@ autocmd Filetype go nnoremap <leader>gv :vsp <CR>:exe "GoDef" <CR>
 let g:ackprg = 'ag --vimgrep --smart-case'
 
 " ==================== markdown ====================
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_fenced_languages = ['go=go', 'viml=vim', 'bash=sh']
 let g:vim_markdown_conceal = 0
-let g:vim_markdown_toml_frontmatter = 1
+let g:vim_markdown_fenced_languages = ['go=go', 'viml=vim', 'bash=sh']
+let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 2
 let g:vim_markdown_no_extensions_in_markdown = 1
+let g:vim_markdown_strikethrough = 1
+let g:vim_markdown_toml_frontmatter = 1
 
 " ==================== Various other plugin settings ====================
 nmap - <Plug>(choosewin)
