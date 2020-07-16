@@ -49,15 +49,15 @@ call plug#end()
 "===================== SETTINGS ======================
 
 " Keep vim gemerated artifacts in ~/.vim
-if exists("*mkdir")
-  if !isdirectory($HOME . "/.vim/backups")
-    call mkdir($HOME . "/.vim/backups", "p")
+if exists('*mkdir')
+  if !isdirectory($HOME . '/.vim/backups')
+    call mkdir($HOME . '/.vim/backups', 'p')
   endif
-  if !isdirectory($HOME . "/.vim/swaps")
-    call mkdir($HOME . "/.vim/swaps", "p")
+  if !isdirectory($HOME . '/.vim/swaps')
+    call mkdir($HOME . '/.vim/swaps', 'p')
   endif
-  if !isdirectory($HOME . "/.vim/undo")
-    call mkdir($HOME . "/.vim/undo", "p")
+  if !isdirectory($HOME . '/.vim/undo')
+    call mkdir($HOME . '/.vim/undo', 'p')
   endif
 endif
 set backupdir=$HOME/.vim/backups,$TMPDIR,/tmp
@@ -92,12 +92,12 @@ set modeline                           " support modelines in files
 set modelines=5                        " number of lines checked for set commands
 set number                             " turn on line numbers
 set numberwidth=5                      " minimum number columns to use for line number
-set pumheight=10                       " max size of completion popup"
+set pumheight=10                       " max size of completion popup
 set ruler                              " show the cursor position all the time
 set shiftround                         " round indent to a multiple of shiftwidth
 set shiftwidth=4                       " number of spaces to use for each step of autoindent
 set scrolloff=2                        " minimum screen lines to keep above/below cursor
-set shortmess+=c                       " turn off completion messages"
+set shortmess+=c                       " turn off completion messages
 set showcmd                            " display incomplete commands
 set showmatch                          " when bracket is inserted, briefly jump to matching bracket
 set smartcase                          " override ignorecase if search contains an upper case char
@@ -116,7 +116,7 @@ endif
 "=====================================================
 "=====================  Colors  ======================
 " Force 256 colors and fast tty for gui and mac terminal
-if has("gui_running") || (&term =~ "xterm")
+if has('gui_running') || (&term =~ 'xterm')
   set t_Co=256
   set t_Sb=[4%dm
   set t_Sf=[3%dm
@@ -124,12 +124,12 @@ if has("gui_running") || (&term =~ "xterm")
 endif
 
 " Switch syntax highlighting on when the terminal has colors.
-if &t_Co > 2 || has("gui_running")
+if &t_Co > 2 || has('gui_running')
   syntax on
 endif
 
 " enable 24 bit colors in iTerm
-if has('termguicolors') && ($LC_TERMINAL =~ "iTerm" || !empty($WT_SESSION))
+if has('termguicolors') && ($LC_TERMINAL =~ 'iTerm' || !empty($WT_SESSION))
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
@@ -159,7 +159,7 @@ else
 endif
 
 " Configuration for all graphical front ends
-if has("gui_running")
+if has('gui_running')
   " Use curly underline for spelling
   highlight SpellBad term=underline gui=undercurl guifg=NONE guibg=NONE guisp=Red
   set mouse=a
@@ -200,7 +200,7 @@ augroup END
 
 "=====================================================
 "===================== MAPPINGS ======================
-let mapleader = ","
+let mapleader = ','
 
 " space clears search string highlighting
 nnoremap <silent> <space> :nohl<cr><space>
@@ -271,7 +271,7 @@ endif
 
 " ================== vim-ariline ====================
 " Setup a good font for macvim
-if has("gui_macvim")
+if has('gui_macvim')
   set antialias
   set guifont=Inconsolata-dz\ for\ Powerline:h10
   let g:airline_powerline_fonts = 1
@@ -303,7 +303,7 @@ nnoremap <leader>gb :Gblame<CR>
 
 " =================== syntastic ====================
 let g:syntastic_go_checkers=['go', 'govet', 'errcheck']
-let g:syntastic_sh_shellcheck_args="-x -e SC1090 -e SC1091"
+let g:syntastic_sh_shellcheck_args='-x -e SC1090 -e SC1091'
 
 " ===================== tagbar  ====================
 nmap <F8> :TagbarToggle<CR>
@@ -313,7 +313,7 @@ let html_use_css=1
 let use_xhtml=1
 
 " =====================  netrw  ====================
-let g:netrw_ftpmode="ascii"
+let g:netrw_ftpmode='ascii'
 
 " ==================== vim-json ====================
 let g:vim_json_syntax_conceal=0        " Disable double quote hiding
@@ -322,7 +322,7 @@ let g:vim_json_syntax_conceal=0        " Disable double quote hiding
 let g:terraform_align=1
 
 " ==================== supertab ====================
-let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = 'context'
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 
 " save on focus loss in gui
@@ -336,10 +336,10 @@ autocmd BufReadPost *
 
 " ==================== vim-go ====================
 " disables the 197 return code on focus
-let $GINKGO_EDITOR_INTEGRATION = "true"
+let $GINKGO_EDITOR_INTEGRATION = 'true'
 
-let g:go_bin_path = expand("~/.gotools")
-if has("unix")
+let g:go_bin_path = expand('~/.gotools')
+if has('unix')
   let $PATH = g:go_bin_path . ':' . $PATH
 else
   let $PATH = g:go_bin_path . ';' . $PATH
@@ -351,7 +351,8 @@ let g:go_auto_type_info = 0
 let g:go_diagnostics_enabled = 1
 let g:go_doc_popup_window = 0
 let g:go_echo_command_info = 1
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command = 'goimports'
+let g:go_fmt_options = '-local github.ibm.com'
 let g:go_fmt_fail_silently = 1
 let g:go_gocode_propose_source = 1
 let g:go_gopls_complete_unimported = 1
@@ -366,10 +367,10 @@ let g:go_highlight_string_spellcheck = 0
 let g:go_highlight_structs = 0
 let g:go_implements_mode='gopls'
 let g:go_info_mode = 'gopls'
-let g:go_list_type = "quickfix"
+let g:go_list_type = 'quickfix'
 let g:go_rename_command='gopls'
 let g:go_test_prepend_name = 1
-let g:go_test_timeout = "30s"
+let g:go_test_timeout = '30s'
 
 let g:go_debug_windows = {
       \ 'vars':  'leftabove 35vnew',
@@ -385,9 +386,9 @@ augroup golang
   autocmd Filetype go nnoremap <buffer>gd :GoDef<CR>
   autocmd Filetype go nnoremap <leader>r :GoRun %<CR>
   autocmd Filetype go nnoremap <leader>gd :GoDescribe<CR>
-  autocmd Filetype go nnoremap <leader>gs :sp <CR>:exe "GoDef"<CR>
-  autocmd Filetype go nnoremap <leader>gt :tab split <CR>:exe "GoDef"<CR>
-  autocmd Filetype go nnoremap <leader>gv :vsp <CR>:exe "GoDef" <CR>
+  autocmd Filetype go nnoremap <leader>gs :sp <CR>:exe 'GoDef'<CR>
+  autocmd Filetype go nnoremap <leader>gt :tab split <CR>:exe 'GoDef'<CR>
+  autocmd Filetype go nnoremap <leader>gv :vsp <CR>:exe 'GoDef' <CR>
 augroup END
 
 " ==================== ag ====================
@@ -416,11 +417,11 @@ hi def link MyTodo Todo
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
-if !exists(":DiffOrig")
+if !exists(':DiffOrig')
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 endif
 
-if !has("gui_running") && !empty($SSH_CLIENT)
+if !has('gui_running') && !empty($SSH_CLIENT) && empty($TMUX)
   nnoremap <silent> yy :<C-U>call YankToTerminalClipboard('yy')<CR>
   nnoremap <silent> y :set operatorfunc=YankToTerminalClipboard<CR>g@
   vnoremap <silent> y :<C-U>call YankToTerminalClipboard(visualmode(), 1)<CR>
