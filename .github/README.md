@@ -21,7 +21,7 @@ ssh-agent, the following will clone the dotfiles, populate `$HOME`, install
     if [ ! -d ~/.bash_it ]; then
         git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
         ~/.bash_it/install.sh --silent --no-modify-config
-        echo 'bash-it enable completion ssh terraform tmux' | bash -i
+        echo 'bash-it enable completion ssh terraform tmux xterm' | bash -i
     fi
 
     if [ ! -d ~/.oh-my-zsh ]; then
@@ -211,7 +211,7 @@ material.
         if [ ! -d ~/.bash_it ]; then
             git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
             ~/.bash_it/install.sh --silent --no-modify-config
-            echo 'bash-it enable completion ssh terraform tmux' | bash -i
+            echo 'bash-it enable completion ssh terraform tmux xterm' | bash -i
         fi
 
         if [ ! -d ~/.oh-my-zsh ]; then
