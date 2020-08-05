@@ -9,28 +9,32 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'cespare/vim-toml'
+Plug 'cespare/vim-toml', {'for': 'toml'}
 Plug 'corylanou/vim-present', {'for': 'present'}
 Plug 'ekalinin/Dockerfile.vim', {'for': 'Dockerfile'}
 Plug 'elzr/vim-json', {'for': 'json'}
-Plug 'fatih/vim-go', {'for': ['go', 'gomod', 'gotexttmpl', 'gohtmltmpl']}
+Plug 'fatih/vim-go', {'tag': '*', 'for': ['go', 'gomod', 'gotexttmpl', 'gohtmltmpl']}
 Plug 'fatih/vim-hclfmt'
-Plug 'fatih/molokai'
-Plug 'fatih/vim-nginx' , {'for' : 'nginx'}
+Plug 'fatih/vim-nginx', {'for': 'nginx'}
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-hashicorp-tools'
 Plug 'mileszs/ack.vim'
 Plug 'plasticboy/vim-markdown'
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
+Plug 'racer-rust/vim-racer', {'for': 'rust'}
 Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Plug 'sykesm/vim-osc52'
 Plug 't9md/vim-choosewin'
-Plug 'roxma/vim-tmux-clipboard'
+if !has('gui_running')
+  Plug 'roxma/vim-tmux-clipboard'
+endif
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+
 Plug 'ervandew/supertab'
 
 Plug 'bling/vim-airline'                    " improved status bar
@@ -39,8 +43,9 @@ Plug 'vim-scripts/matchit.zip'              " extending matching
 Plug 'majutsushi/tagbar'                    " code tree
 Plug 'mhinz/vim-signify'                    " line markers
 Plug 'scrooloose/syntastic'                 " syntax checking
-Plug 'w0ng/vim-hybrid'                      " color scheme
 Plug 'altercation/vim-colors-solarized'     " color scheme
+Plug 'fatih/molokai'                        " color scheme
+Plug 'w0ng/vim-hybrid'                      " color scheme
 
 Plug 'kien/ctrlp.vim'                       " fuzzy file open
 call plug#end()
@@ -146,11 +151,10 @@ set background=dark
 
 " Alter colorscheme based on available terminal colors
 if &t_Co >= 256
-  "colorscheme Tomorrow-Night
-  silent! colorscheme hybrid
   " let g:molokai_original = 1
   " let g:rehash256 = 1
   " silent! colorscheme molokai
+  silent! colorscheme hybrid
 else
   colorscheme default
   highlight LineNr ctermfg=DarkGrey
@@ -216,9 +220,9 @@ nnoremap <silent> <C-j> <c-w>j
 
 " put quickfix window always to the bottom
 augroup quickfix
-    autocmd!
-    autocmd FileType qf wincmd J
-    autocmd FileType qf setlocal wrap
+  autocmd!
+  autocmd FileType qf wincmd J
+  autocmd FileType qf setlocal wrap
 augroup END
 
 " Close all but the current one
@@ -273,7 +277,7 @@ endif
 " Setup a good font for macvim
 if has('gui_macvim')
   set antialias
-  set guifont=Inconsolata-dz\ for\ Powerline:h10
+  set guifont=Inconsolata-dz\ for\ Powerline:h12
   let g:airline_powerline_fonts = 1
 elseif !empty($POWERLINE)
   let g:airline_powerline_fonts = 1
@@ -323,7 +327,10 @@ let g:terraform_align=1
 
 " ==================== supertab ====================
 let g:SuperTabDefaultCompletionType = 'context'
-let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
+let g:SuperTabContextTextOmniPrecedence = ['&completefunc', '&omnifunc']
+let g:SuperTabContextDefaultCompletionType = '<c-p>'
+let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
+let g:SuperTabContextDiscoverDiscovery = ['&omnifunc:<c-x><c-o>']
 
 " save on focus loss in gui
 autocmd FocusLost * silent! wa
@@ -345,7 +352,7 @@ else
   let $PATH = g:go_bin_path . ';' . $PATH
 endif
 
-let g:go_autodetect_gopath = 1
+let g:go_autodetect_gopath = 0
 let g:go_auto_sameids = 0
 let g:go_auto_type_info = 0
 let g:go_diagnostics_enabled = 1
@@ -371,7 +378,6 @@ let g:go_list_type = 'quickfix'
 let g:go_rename_command='gopls'
 let g:go_test_prepend_name = 1
 let g:go_test_timeout = '30s'
-
 let g:go_debug_windows = {
       \ 'vars':  'leftabove 35vnew',
       \ 'stack': 'botright 10new',
@@ -391,7 +397,24 @@ augroup golang
   autocmd Filetype go nnoremap <leader>gv :vsp <CR>:exe 'GoDef' <CR>
 augroup END
 
-" ==================== ag ====================
+" ====================== rust ======================
+let g:racer_experimental_completer = 1
+let g:rustfmt_autosave = 1
+let g:rustfmt_autosave_if_config_present = 1
+let g:rustfmt_fail_silently = 1
+
+augroup Racer
+  autocmd!
+  autocmd FileType rust nmap <buffer> gd         <Plug>(rust-def)
+  autocmd FileType rust nmap <buffer> gs         <Plug>(rust-def-split)
+  autocmd FileType rust nmap <buffer> gx         <Plug>(rust-def-vertical)
+  autocmd FileType rust nmap <buffer> gt         <Plug>(rust-def-tab)
+  autocmd FileType rust nmap <buffer> K          <Plug>(rust-doc)
+  autocmd FileType rust nmap <buffer> <leader>gd <Plug>(rust-doc)
+  autocmd FileType rust nmap <buffer> <leader>gD <Plug>(rust-doc-tab)
+augroup END
+
+" ======================= ag =======================
 let g:ackprg = 'ag --vimgrep --smart-case'
 
 " ==================== markdown ====================

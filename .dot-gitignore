@@ -3,11 +3,13 @@
 
 /.bash_it/
 /.cache/
+/.cargo/
 /.dotfiles/
 /.gotools/
 /.kube/
 /.oh-my-zsh/
 /.rbenv/
+/.rustup/
 /.tmux/plugins/
 /.Trash/
 /.vagrant.d/
