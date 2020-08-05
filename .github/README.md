@@ -205,6 +205,7 @@ material.
     
         GIT_SSH_COMMAND="ssh -i $HOME/.ssh/id_rsa_deploy" git clone --bare git@github.com:sykesm/dotfiles "$HOME/.dotfiles"
         git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" config --local status.showUntrackedFiles no
+        git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" config --local core.excludesFile "$HOME/.dot-gitignore"
         git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" checkout -f
     
         if [ ! -d ~/.bash_it ]; then
@@ -228,6 +229,12 @@ material.
     
         mkdir -p "$HOME/.tokens"
         softhsm2-util --init-token --slot 0 --label "ForFabric" --so-pin 1234 --pin 98765432
+
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+        export PATH="$HOME/.cargo/bin:$PATH"
+        rustup toolchain add nightly
+        rustup component add rust-src
+        cargo +nightly install racer
         EOF
 ```
 
