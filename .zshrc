@@ -74,7 +74,7 @@ plugins=(
     direnv
     docker
     git
-    go
+    golang
     grc
 )
 
