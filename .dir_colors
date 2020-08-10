@@ -158,6 +158,8 @@ EXEC 01;32 # files with execute permission
 *~ 02;37
 .bak 02;37
 .BAK 02;37
+*go.sum 02;37
+.lock 02;37
 .log 02;37
 .log 02;37
 .old 02;37
@@ -230,9 +232,9 @@ EXEC 01;32 # files with execute permission
 .c 32
 .go 32
 *go.mod 32
-*go.sum 32
 .h 32
 *Makefile 32
 .mk 32
+.rs 32
 .s 32
 .tmpl 32
