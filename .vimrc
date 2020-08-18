@@ -175,17 +175,18 @@ end
 filetype plugin indent on
 
 augroup filetypedetect
-  autocmd BufNewFile,BufRead *.hcl   setlocal expandtab shiftwidth=2 tabstop=2
-  autocmd BufNewFile,BufRead *.html  setlocal noet ts=4 sw=4
-  autocmd BufNewFile,BufRead *.ino   setlocal noet ts=4 sw=4 sts=4
-  autocmd BufNewFile,BufRead *.md    setlocal noet ts=4 sw=4
-  autocmd BufNewFile,BufRead *.proto setlocal expandtab shiftwidth=2 tabstop=2
-  autocmd BufNewFile,BufRead *.sh    setlocal expandtab shiftwidth=2 tabstop=2
-  autocmd BufNewFile,BufRead *.txt   setlocal noet ts=4 sw=4
-  autocmd BufNewFile,BufRead *.vim   setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd BufNewFile,BufRead *.hcl    setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd BufNewFile,BufRead *.html   setlocal noet ts=4 sw=4
+  autocmd BufNewFile,BufRead *.ino    setlocal noet ts=4 sw=4 sts=4
+  autocmd BufNewFile,BufRead *.md     setlocal noet ts=4 sw=4
+  autocmd BufNewFile,BufRead *.proto  setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd BufNewFile,BufRead *.sh     setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd BufNewFile,BufRead *.txt    setlocal noet ts=4 sw=4
+  autocmd BufNewFile,BufRead *.vim    setlocal expandtab shiftwidth=2 tabstop=2
 
+  autocmd BufNewFile,BufRead .envrc   setfiletype sh
   autocmd BufNewFile,BufRead *.gotmpl setfiletype gotexttmpl
-  autocmd BufNewFile,BufRead *.hcl setfiletype conf
+  autocmd BufNewFile,BufRead *.hcl    setfiletype conf
   autocmd BufNewFile,BufRead .nginx.conf*,nginx.conf* setfiletype nginx
   autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* setfiletype tmux
 
