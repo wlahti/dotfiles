@@ -104,7 +104,7 @@ material.
     - tig
     - tmux
     - tree
-	- universal-ctags
+    - universal-ctags
     - unzip
     - vim
     - wget
