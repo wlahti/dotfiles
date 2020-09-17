@@ -178,11 +178,8 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.hcl    setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.html   setlocal noet ts=4 sw=4
   autocmd BufNewFile,BufRead *.ino    setlocal noet ts=4 sw=4 sts=4
-  autocmd BufNewFile,BufRead *.md     setlocal noet ts=4 sw=4
   autocmd BufNewFile,BufRead *.proto  setlocal expandtab shiftwidth=2 tabstop=2
-  autocmd BufNewFile,BufRead *.sh     setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.txt    setlocal noet ts=4 sw=4
-  autocmd BufNewFile,BufRead *.vim    setlocal expandtab shiftwidth=2 tabstop=2
 
   autocmd BufNewFile,BufRead .envrc   setfiletype sh
   autocmd BufNewFile,BufRead *.gotmpl setfiletype gotexttmpl
@@ -191,13 +188,15 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* setfiletype tmux
 
   autocmd FileType json     setlocal expandtab shiftwidth=2 tabstop=2
-  autocmd FileType markdown setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 spell textwidth=78
-  autocmd FileType python   setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-  autocmd FileType ruby     setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
-  autocmd FileType text     setlocal spell textwidth=78
-  autocmd FileType vim      setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=4
+  autocmd FileType markdown setlocal expandtab shiftwidth=4 tabstop=4 spell textwidth=78
+  autocmd FileType proto    setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd FileType python   setlocal expandtab shiftwidth=4 tabstop=4
+  autocmd FileType ruby     setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd FileType sh       setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd FileType text     setlocal noet      shiftwidth=4 tabstop=4 softtabstop=4 spell textwidth=78
+  autocmd FileType vim      setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType xml      setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
-  autocmd FileType yaml     setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+  autocmd FileType yaml     setlocal expandtab shiftwidth=2 tabstop=2
 
   autocmd FileType gitcommit setlocal spell
   autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])

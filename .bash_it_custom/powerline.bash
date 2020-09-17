@@ -1,4 +1,6 @@
 # shellcheck shell=bash
 # vi: set ft=sh:
 
-export POWERLINE=true
+if [[ "$TERM" == *"xterm"* ]]; then
+    export POWERLINE=true
+fi
