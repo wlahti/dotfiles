@@ -90,3 +90,5 @@ alias dotfiles='git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
 if [ -d "$HOME/.zsh-syntax-highlighting" ]; then
     source "$HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
+
+export LESS="-RX"
