@@ -399,9 +399,10 @@ augroup END
 
 " ====================== rust ======================
 let g:racer_experimental_completer = 1
+let g:rust_cargo_check_tests = 1
 let g:rustfmt_autosave = 1
 let g:rustfmt_autosave_if_config_present = 1
-let g:rustfmt_fail_silently = 1
+let g:rustfmt_fail_silently = 0
 
 augroup Racer
   autocmd!
