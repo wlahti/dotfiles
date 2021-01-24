@@ -12,7 +12,7 @@ ssh-agent, the following will clone the dotfiles, populate `$HOME`, install
 [bash-it], and [tpm] for [tmux].
 
 ```sh
-    git clone --bare git@github.com:sykesm/dotfiles "$HOME/.dotfiles"
+    git clone --bare https://github.com/sykesm/dotfiles "$HOME/.dotfiles"
     alias dotfiles='git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
     dotfiles config --local status.showUntrackedFiles no
     dotfiles config --local core.excludesFile "$HOME/.dot-gitignore"
@@ -38,9 +38,9 @@ ssh-agent, the following will clone the dotfiles, populate `$HOME`, install
     fi
 ```
 
-If the SSH key is available as a file and not loaded into the agent, the
-`GIT_SSH_COMMAND` environment variable can be used to point to the key to use
-for the clone.
+If the repo is private and the SSH key is available as a file and not loaded
+into the agent, the `GIT_SSH_COMMAND` environment variable can be used to
+point to the key to use for the clone.
 
 ```sh
     GIT_SSH_COMMAND="ssh -i $HOME/.ssh/id_rsa_deploy" git clone --bare git@github.com:sykesm/dotfiles "$HOME/.dotfiles"
