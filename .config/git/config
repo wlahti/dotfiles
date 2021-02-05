@@ -43,3 +43,7 @@
 	insteadOf = https://github.ibm.com/
 [http "https://gopkg.in"]
 	followRedirects = true
+[versionsort]
+	prereleaseSuffix = -alpha
+	prereleaseSuffix = -beta
+	prereleaseSuffix = -rc
