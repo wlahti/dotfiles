@@ -12,7 +12,7 @@ ssh-agent, the following will clone the dotfiles, populate `$HOME`, install
 [bash-it], and [tpm] for [tmux].
 
 ```sh
-    git clone --bare https://github.com/sykesm/dotfiles "$HOME/.dotfiles"
+    git clone --bare https://github.com/wlahti/dotfiles "$HOME/.dotfiles"
     alias dotfiles='git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
     dotfiles config --local status.showUntrackedFiles no
     dotfiles config --local core.excludesFile "$HOME/.dot-gitignore"
