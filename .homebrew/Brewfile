@@ -1,5 +1,5 @@
-/* tap "cloudfoundry/tap" */
-/* tap "cockroachdb/tap" */
+# tap "cloudfoundry/tap"
+# tap "cockroachdb/tap"
 tap "git-duet/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask"
@@ -7,66 +7,67 @@ tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "tinygo-org/tools"
-/* tap "universal-ctags/universal-ctags" */
-/* brew "sqlite" */
-/* brew "asciinema" */
+# tap "universal-ctags/universal-ctags"
+# brew "sqlite"
+# brew "asciinema"
 brew "bash-completion"
 brew "coreutils"
-/* brew "ctop" */
+# brew "ctop"
 brew "go"
 brew "dep"
 brew "direnv"
-/* brew "docker-completion" */
-/* brew "dos2unix" */
-/* brew "figlet" */
+# brew "docker-completion"
+# brew "dos2unix"
+# brew "figlet"
 brew "git"
 brew "glow"
 brew "gnu-sed"
 brew "gnu-tar"
 brew "govendor"
-/* brew "gradle" */
-/* brew "grc" */
+# brew "gradle"
+# brew "grc"
 brew "grep"
-/* brew "helm" */
-/* brew "htop" */
-/* brew "hugo" */
+# brew "helm"
+# brew "htop"
+# brew "hugo"
 brew "jq"
-/* brew "just" */
-/* brew "kubernetes-cli" */
+# brew "just"
+# brew "kubernetes-cli"
 brew "lastpass-cli"
-/* brew "lolcat" */
+# brew "lolcat"
+brew "macvim"
 brew "maven"
-/* brew "moreutils" */
+brew "moreutils"
 brew "protobuf"
-/* brew "mosh" */
-/* brew "node" */
-/* brew "nyancat" */
-/* brew "prometheus" */
-/* brew "rustup-init" */
-brew "shellcheck"
-brew "shpotify"
-/* brew "softhsm" */
-/* brew "stress" */
+# brew "mosh"
+# brew "node"
+# brew "nyancat"
+# brew "prometheus"
+# brew "rustup-init"
+# brew "shellcheck"
+# brew "shpotify"
+# brew "softhsm"
+# brew "stress"
 brew "the_platinum_searcher"
 brew "the_silver_searcher"
-/* brew "tig" */
-/* brew "tj" */
+# brew "tig"
+# brew "tj"
 brew "tmux"
-/* brew "travis" */
-/* brew "tree" */
-/* brew "vim" */
-/* brew "vitetris" */
-/* brew "wabt" */
-/* brew "wasmer" */
-/* brew "watch" */
-/* brew "cockroachdb/tap/cockroach" */
+# brew "travis"
+# brew "tree"
+# brew "vim"
+# brew "vitetris"
+# brew "wabt"
+# brew "wasmer"
+# brew "watch"
+# brew "cockroachdb/tap/cockroach"
 brew "git-duet/tap/git-duet"
 brew "tinygo-org/tools/tinygo"
-/* brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"] */
+# brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 cask "flycut"
 cask "font-inconsolata-dz-for-powerline"
 cask "font-jetbrains-mono"
 cask "iterm2"
 cask "keycastr"
-/* cask "vagrant" */
-/* cask "virtualbox" */
+# cask "vagrant"
+# cask "virtualbox"
