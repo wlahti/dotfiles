@@ -26,7 +26,7 @@
 [format]
 	pretty = full
 [github]
-	user = sykesm
+	user = wlahti 
 [push]
 	default = current
 	recurseSubmodules = on-demand
@@ -35,8 +35,8 @@
 [submodule]
 	fetchJobs = 0
 [user]
-	name = Matthew Sykes
-	email = matthew.sykes@gmail.com
+	name = Will Lahti 
+	email = will.lahti@gmail.com
 [url "git@github.com:"]
 	pushInsteadOf = https://github.com/
 [url "git@github.ibm.com:"]
