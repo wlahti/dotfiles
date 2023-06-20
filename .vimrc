@@ -5,6 +5,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+source $VIMRUNTIME/defaults.vim
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'AndrewRadev/splitjoin.vim'
@@ -48,6 +50,16 @@ Plug 'fatih/molokai'                        " color scheme
 Plug 'w0ng/vim-hybrid'                      " color scheme
 
 Plug 'kien/ctrlp.vim'                       " fuzzy file open
+
+Plug 'pangloss/vim-javascript'              " JavaScript support
+Plug 'leafgarland/typescript-vim'           " TypeScript syntax
+Plug 'maxmellon/vim-jsx-pretty'             " JS and JSX syntax
+Plug 'jparise/vim-graphql'                  " GraphQL syntax
+Plug 'prabirshrestha/vim-lsp'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}  " TypeScript 
+
 call plug#end()
 
 "=====================================================
@@ -107,8 +119,8 @@ set showcmd                            " display incomplete commands
 set showmatch                          " when bracket is inserted, briefly jump to matching bracket
 set smartcase                          " override ignorecase if search contains an upper case char
 set smartindent                        " smart indenting when starting a new line
-set smarttab                           " insrt blanks on <tab> according to shiftwidth
-set softtabstop=2                      " spaces that a <tab> counts for while editing
+set smarttab                           " insert blanks on <tab> according to shiftwidth
+set softtabstop=4                      " spaces that a <tab> counts for while editing
 set tabstop=4                          " treat a tab as 4 spaces
 set undofile                           " keep an undo file (undo changes after closing)
 set updatetime=300                     " write to swap after 300ms
@@ -176,7 +188,7 @@ filetype plugin indent on
 
 augroup filetypedetect
   autocmd BufNewFile,BufRead *.hcl    setlocal expandtab shiftwidth=2 tabstop=2
-  autocmd BufNewFile,BufRead *.html   setlocal noet ts=4 sw=4
+  autocmd BufNewFile,BufRead *.html   setlocal expandtab ts=2 sw=2
   autocmd BufNewFile,BufRead *.ino    setlocal noet ts=4 sw=4 sts=4
   autocmd BufNewFile,BufRead *.proto  setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.txt    setlocal noet ts=4 sw=4
@@ -359,7 +371,6 @@ let g:go_diagnostics_enabled = 1
 let g:go_doc_popup_window = 0
 let g:go_echo_command_info = 1
 let g:go_fmt_command = 'goimports'
-let g:go_fmt_options = '-local github.ibm.com'
 let g:go_fmt_fail_silently = 1
 let g:go_gocode_propose_source = 1
 let g:go_gopls_complete_unimported = 1
