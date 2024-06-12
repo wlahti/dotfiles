@@ -5,17 +5,17 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-source $VIMRUNTIME/defaults.vim
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'cespare/vim-toml', {'for': 'toml'}
+" Plug 'cespare/vim-toml', {'for': 'toml'}
+Plug 'cespare/vim-toml', { 'branch': 'main' }
 Plug 'corylanou/vim-present', {'for': 'present'}
 Plug 'ekalinin/Dockerfile.vim', {'for': 'Dockerfile'}
 Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'fatih/vim-go', {'tag': '*', 'for': ['go', 'gomod', 'gotexttmpl', 'gohtmltmpl']}
+" Plug 'govim/govim'
 Plug 'fatih/vim-hclfmt'
 Plug 'fatih/vim-nginx', {'for': 'nginx'}
 Plug 'godlygeek/tabular'
@@ -51,14 +51,12 @@ Plug 'w0ng/vim-hybrid'                      " color scheme
 
 Plug 'kien/ctrlp.vim'                       " fuzzy file open
 
-Plug 'pangloss/vim-javascript'              " JavaScript support
-Plug 'leafgarland/typescript-vim'           " TypeScript syntax
-Plug 'maxmellon/vim-jsx-pretty'             " JS and JSX syntax
-Plug 'jparise/vim-graphql'                  " GraphQL syntax
-Plug 'prabirshrestha/vim-lsp'
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'mattn/vim-lsp-settings' 
+" Plug 'ycm-core/YouCompleteMe'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}  " TypeScript 
+Plug 'github/copilot.vim'
 
 call plug#end()
 
@@ -119,8 +117,8 @@ set showcmd                            " display incomplete commands
 set showmatch                          " when bracket is inserted, briefly jump to matching bracket
 set smartcase                          " override ignorecase if search contains an upper case char
 set smartindent                        " smart indenting when starting a new line
-set smarttab                           " insert blanks on <tab> according to shiftwidth
-set softtabstop=4                      " spaces that a <tab> counts for while editing
+set smarttab                           " insrt blanks on <tab> according to shiftwidth
+set softtabstop=2                      " spaces that a <tab> counts for while editing
 set tabstop=4                          " treat a tab as 4 spaces
 set undofile                           " keep an undo file (undo changes after closing)
 set updatetime=300                     " write to swap after 300ms
@@ -188,7 +186,7 @@ filetype plugin indent on
 
 augroup filetypedetect
   autocmd BufNewFile,BufRead *.hcl    setlocal expandtab shiftwidth=2 tabstop=2
-  autocmd BufNewFile,BufRead *.html   setlocal expandtab ts=2 sw=2
+  autocmd BufNewFile,BufRead *.html   setlocal noet ts=4 sw=4
   autocmd BufNewFile,BufRead *.ino    setlocal noet ts=4 sw=4 sts=4
   autocmd BufNewFile,BufRead *.proto  setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.txt    setlocal noet ts=4 sw=4
@@ -199,16 +197,17 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead .nginx.conf*,nginx.conf* setfiletype nginx
   autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* setfiletype tmux
 
+  autocmd FileType go       setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType json     setlocal expandtab shiftwidth=2 tabstop=2
-  autocmd FileType markdown setlocal expandtab shiftwidth=4 tabstop=4 spell textwidth=78
+  autocmd FileType markdown setlocal expandtab shiftwidth=4 tabstop=4 spell textwidth=100
   autocmd FileType proto    setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType python   setlocal expandtab shiftwidth=4 tabstop=4
   autocmd FileType ruby     setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType sh       setlocal expandtab shiftwidth=2 tabstop=2
-  autocmd FileType text     setlocal noet      shiftwidth=4 tabstop=4 softtabstop=4 spell textwidth=78
+  autocmd FileType text     setlocal noet      shiftwidth=4 tabstop=4 softtabstop=4 spell textwidth=100
   autocmd FileType vim      setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType xml      setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
-  autocmd FileType yaml     setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd FileType yaml     setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
   autocmd FileType gitcommit setlocal spell
   autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
@@ -371,6 +370,7 @@ let g:go_diagnostics_enabled = 1
 let g:go_doc_popup_window = 0
 let g:go_echo_command_info = 1
 let g:go_fmt_command = 'goimports'
+let g:go_fmt_options = '-local github.ibm.com'
 let g:go_fmt_fail_silently = 1
 let g:go_gocode_propose_source = 1
 let g:go_gopls_complete_unimported = 1
@@ -401,6 +401,7 @@ augroup golang
   autocmd Filetype go set makeprg=go\ build\ ./...
   autocmd Filetype go nnoremap <buffer> <leader>i :exe 'GoImport ' . expand('<cword>')<CR>
   autocmd Filetype go nnoremap <buffer>gd :GoDef<CR>
+  autocmd Filetype go nnoremap <buffer>gfs :GoFillStruct<CR>
   autocmd Filetype go nnoremap <leader>r :GoRun %<CR>
   autocmd Filetype go nnoremap <leader>gd :GoDescribe<CR>
   autocmd Filetype go nnoremap <leader>gs :sp <CR>:exe 'GoDef'<CR>
@@ -463,3 +464,234 @@ if !has('gui_running') && !empty($SSH_CLIENT) && empty($TMUX)
 endif
 
 " vim: sw=2 sw=2 et
+
+let g:ycm_clangd_binary_path = trim(system('brew --prefix llvm')).'/bin/clangd'
+
+" https://raw.githubusercontent.com/neoclide/coc.nvim/master/doc/coc-example-config.vim
+
+" May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
+" utf-8 byte sequence
+set encoding=utf-8
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
+" delays and poor user experience
+set updatetime=300
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s)
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Applying code actions to the selected code block
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying code actions at the cursor position
+nmap <leader>ac  <Plug>(coc-codeaction-cursor)
+" Remap keys for apply code actions affect whole buffer
+nmap <leader>as  <Plug>(coc-codeaction-source)
+" Apply the most preferred quickfix action to fix diagnostic on the current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Remap keys for applying refactor code actions
+nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+
+" Run the Code Lens action on the current line
+nmap <leader>cl  <Plug>(coc-codelens-action)
+
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Remap <C-f> and <C-b> to scroll float windows/popups
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+
+" Use CTRL-S for selections ranges
+" Requires 'textDocument/selectionRange' support of language server
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+" Add `:Format` command to format current buffer
+command! -nargs=0 Format :call CocActionAsync('format')
+
+" Add `:Fold` command to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer
+command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+
+" Add (Neo)Vim's native statusline support
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Mappings for CoCList
+" Show all diagnostics
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+"" This file represents the minimal .vimrc needed to work with govim.
+""
+"" We also include a number of suggested settings that we think the majority of
+"" users will like/prefer.
+
+"set nocompatible
+"set nobackup
+"set nowritebackup
+"set noswapfile
+
+"filetype plugin on
+
+"set mouse=a
+
+"" To get hover working in the terminal we need to set ttymouse. See
+""
+"" :help ttymouse
+""
+"" for the appropriate setting for your terminal. Note that despite the
+"" automated tests using xterm as the terminal, a setting of ttymouse=xterm
+"" does not work correctly beyond a certain column number (citation needed)
+"" hence we use ttymouse=sgr
+"set ttymouse=sgr
+
+"" Suggestion: By default, govim populates the quickfix window with diagnostics
+"" reported by gopls after a period of inactivity, the time period being
+"" defined by updatetime (help updatetime). Here we suggest a short updatetime
+"" time in order that govim/Vim are more responsive/IDE-like
+"set updatetime=500
+
+"" Suggestion: To make govim/Vim more responsive/IDE-like, we suggest a short
+"" balloondelay
+"set balloondelay=250
+
+"" Suggestion: Turn on the sign column so you can see error marks on lines
+"" where there are quickfix errors. Some users who already show line number
+"" might prefer to instead have the signs shown in the number column; in which
+"" case set signcolumn=number
+"set signcolumn=yes
+
+"" Suggestion: Turn on syntax highlighting for .go files. You might prefer to
+"" turn on syntax highlighting for all files, in which case
+""
+"" syntax on
+""
+"" will suffice, no autocmd required.
+"autocmd! BufEnter,BufNewFile *.go,go.mod syntax on
+"autocmd! BufLeave *.go,go.mod syntax off
+
+"" Suggestion: turn on auto-indenting. If you want closing parentheses, braces
+"" etc to be added, https://github.com/jiangmiao/auto-pairs. In future we might
+"" include this by default in govim.
+"set autoindent
+"set smartindent
+"filetype indent on
+
+"" Suggestion: define sensible backspace behaviour. See :help backspace for
+"" more details
+"set backspace=2
+
+"" Suggestion: show info for completion candidates in a popup menu
+"if has("patch-8.1.1904")
+"  set completeopt+=popup
+"  set completepopup=align:menu,border:off,highlight:Pmenu
+"endif
