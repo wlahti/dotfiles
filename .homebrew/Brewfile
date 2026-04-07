@@ -1,87 +1,395 @@
-# tap "cloudfoundry/tap"
-# tap "cockroachdb/tap"
+tap "1password/tap"
+tap "alexanderwillner/tap"
+tap "azure/functions"
+tap "azure/kubelogin"
+tap "derailed/k9s"
+tap "epk/epk"
+tap "felixkratz/formulae"
+tap "fluxcd/tap"
 tap "git-duet/tap"
+tap "grafana/grafana"
 tap "homebrew/bundle"
-tap "homebrew/cask"
 tap "homebrew/cask-fonts"
-tap "homebrew/core"
+tap "homebrew/cask-versions"
 tap "homebrew/services"
-# tap "mongodb/brew"
+tap "mongodb/brew"
+tap "nats-io/nats-tools"
+tap "nektos/tap"
+tap "openfga/tap"
+tap "ory/tap"
+tap "stripe/stripe-cli"
 tap "tinygo-org/tools"
-# tap "universal-ctags/universal-ctags"
-brew "apache-spark"
-# brew "asciinema"
+# Run your GitHub Actions locally
+brew "act"
+# Library for manipulating PNG images
+brew "libpng"
+# Vector graphics library with cross-device output support
+brew "cairo"
+# Library and utilities for processing GIFs
+brew "giflib"
+# Engine for large-scale data processing
+brew "apache-spark", link: false
+# Record and share terminal sessions
+brew "asciinema"
+# Official Amazon AWS command-line interface
+brew "awscli"
+# Microsoft Azure CLI 2.0
 brew "azure-cli"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
+# Programmable completion for Bash 3.2
 brew "bash-completion"
+# Compiler infrastructure and toolchain library for WebAssembly
+brew "binaryen"
+# Python code formatter
+brew "black"
+# Powerful, enterprise-ready, open source web server with automatic HTTPS
+brew "caddy"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.11"
+# Eventually consistent, distributed key-value store
+brew "cassandra"
+# Cross-platform make
 brew "cmake"
+# GNU File, Shell, and Text utilities
 brew "coreutils"
-# brew "ctop"
-brew "go"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
+# Load/unload environment variables based on $PWD
 brew "direnv"
+# Pack, ship and run any application as a lightweight container
 brew "docker"
-# brew "docker-completion"
-# brew "dos2unix"
-# brew "figlet"
+# .NET Core
+brew "dotnet"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Banner-like program prints strings as ASCII art
+brew "figlet"
+# User-friendly command-line shell for UNIX-like operating systems
+brew "fish"
+# Plugin manager for the Fish shell
+brew "fisher"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GNU compiler collection
+brew "gcc"
+# GitHub command-line tool
+brew "gh"
+# Distributed revision control system
 brew "git"
+# Quickly rewrite git repository history
+brew "git-filter-repo"
+# Git extension for versioning large files
+brew "git-lfs"
+# Render markdown on the CLI
 brew "glow"
+# GNU implementation of the famous stream editor
 brew "gnu-sed"
+# GNU version of the tar archiving utility
 brew "gnu-tar"
-# brew "gradle"
-# brew "grc"
+# Asynchronous event library
+brew "libevent"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Database migrations CLI tool
+brew "golang-migrate"
+# Fast linters runner for Go
+brew "golangci-lint"
+# Deliver Go binaries as fast and easily as possible
+brew "goreleaser"
+# GNU grep, egrep and fgrep
 brew "grep"
-brew "hadoop"
+# Kubernetes package manager
 brew "helm"
-# brew "htop"
-# brew "hugo"
-brew "java"
+# Deploy Kubernetes Helm Charts
+brew "helmfile"
+# Interactive computing in Python
+brew "ipython"
+# Istio configuration command-line utility
+brew "istioctl"
+# Serializes the output of command-line tools to structured JSON output
 brew "jc"
+# JSON output from a shell
+brew "jo"
+# Image manipulation library
+brew "jpeg"
+# Lightweight and flexible command-line JSON processor
 brew "jq"
-brew "just"
-brew "kubernetes-cli"
-brew "lastpass-cli"
-# brew "lolcat"
-brew "macvim"
-brew "maven"
-brew "minikube"
-brew "moreutils"
-brew "protobuf"
-# brew "mosh"
+# Open-source, cross-platform JavaScript runtime environment
 brew "node"
-brew "nodejs"
-# brew "nyancat"
+# Interactive environments for writing and running code
+brew "jupyterlab", link: false
+# Handy way to save and run project-specific commands
+brew "just"
+# Utility to create k3s clusters on any local or remote VM
+brew "k3sup"
+# Kubernetes CLI To Manage Your Clusters In Style!
+brew "k9s"
+# Build and deploy Go applications on Kubernetes
+brew "ko"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
+# Kubernetes prompt info for bash and zsh
+brew "kube-ps1"
+# SDK for building Kubernetes APIs using CRDs
+brew "kubebuilder"
+# Tool that can switch between kubectl contexts easily and create aliases
+brew "kubectx"
+# Kubernetes controller and tool for one-way encrypted Secrets
+brew "kubeseal"
+# Template-free customization of Kubernetes YAML manifests
+brew "kustomize"
+# Assuan IPC Library
+brew "libassuan"
+# Passphrase entry dialog utilizing the Assuan protocol
+brew "pinentry"
+# LastPass command-line interface tool
+brew "lastpass-cli"
+# Simple terminal UI for git commands
+brew "lazygit"
+# C library of Git core methods that is re-entrant and linkable
+brew "libgit2"
+# Framework for layout and rendering of i18n text
+brew "pango"
+# Library to render SVG files using Cairo
+brew "librsvg"
+# Linux virtual machines
+brew "lima"
+# Language Server for the Lua language
+brew "lua-language-server"
+# GUI for vim, made for macOS
+brew "macvim"
+# Run a Kubernetes cluster locally
+brew "minikube"
+# MongoDB Shell to connect, configure, query, and work with your MongoDB database
+brew "mongosh"
+# Collection of tools that nobody wrote when UNIX was young
+brew "moreutils"
+# Experimental optional static type checker for Python
+brew "mypy"
+# Fast, highly customisable system info script
+brew "neofetch"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Control nvim processes using `nvr` command-line tool
+brew "neovim-remote"
+# Manage multiple Node.js versions
+brew "nvm"
+# Optimized BLAS library
+brew "openblas"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@1.1"
+# OCI Registry As Storage
+brew "oras"
+# Package compiler and linker metadata toolkit
+brew "pkgconf"
+# Fast, disk space efficient package manager
+brew "pnpm"
+# Command-line shell and scripting language
+brew "powershell", link: false
+# Service monitoring system and time series database
 brew "prometheus"
-# brew "rustup-init"
-# brew "shellcheck"
-# brew "shpotify"
-# brew "softhsm"
-brew "sqlite"
-# brew "stress"
+# Protocol buffers (Google's data interchange format)
+brew "protobuf"
+# Python version management
+brew "pyenv"
+# Python Language Server for the Language Server Protocol
+brew "python-lsp-server"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
+# Generic machine emulator and virtualizer
+brew "qemu"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Powerful, clean, object-oriented scripting language
+brew "ruby@2.7"
+# Sparklines for the shell
+brew "spark"
+# Cross-shell prompt for astronauts
+brew "starship"
+# Command-line tool for Stripe
+brew "stripe-cli"
+# Command-line interface for running and interacting with Temporal Server and UI
+brew "temporal"
+# Tool to build, change, and version infrastructure
+brew "terraform"
+# Multi-platform code-search similar to ack and ag
 brew "the_platinum_searcher"
+# Code-search similar to ack
 brew "the_silver_searcher"
-# brew "tig"
-# brew "tj"
+# Terminal multiplexer
 brew "tmux"
-# brew "travis"
-# brew "tree"
-# brew "vim"
-# brew "vitetris"
-# brew "wabt"
-# brew "wasmer"
-# brew "watch"
-# brew "cockroachdb/tap/cockroach"
+# Command-line interface for Vercel
+brew "vercel-cli"
+# Executes a program periodically, showing output fullscreen
+brew "watch"
+# Internet file retriever
+brew "wget"
+# Azure Functions Core Tools 3.0
+brew "azure/functions/azure-functions-core-tools@3"
+# A Kubernetes credential (exec) plugin implementing azure authentication
+brew "azure/kubelogin/kubelogin"
+# A window border system for macOS
+brew "felixkratz/formulae/borders"
+# Flux CLI
+brew "fluxcd/tap/flux"
+# Pairing tool for Git
 brew "git-duet/tap/git-duet"
-# brew "mongodb-community@7.0"
+# Vendor-agnostic OpenTelemetry Collector distribution with programmable pipelines
+brew "grafana/grafana/alloy"
+# A tool for creating NATS account and user access configurations
+brew "nats-io/nats-tools/nsc"
+# Use Ory from your terminal!
+brew "ory/tap/cli"
+# TinyGo is a Go compiler for small places. Microcontrollers, WebAssembly, and command-line tools. Based on LLVM.
 brew "tinygo-org/tools/tinygo"
-# brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
+# Password manager that keeps all passwords secure behind one password
+cask "1password"
+# Command-line interface for 1Password
+cask "1password-cli"
+# Distribution of the Python and R programming languages for scientific computing
+cask "anaconda"
+# Tools for building Android applications
 cask "android-studio"
+# Chromium based browser
+cask "arc"
+# Web browser focusing on privacy
+cask "brave-browser"
+# Tool to list all active shortcuts of the current application
+cask "cheatsheet"
+# Terminal-based AI coding assistant
+cask "claude-code"
+# Advanced directory compare utility
+cask "direqual"
+# Voice and text chat software
+cask "discord"
+# Collaborative team software
+cask "figma"
+# Clipboard manager for developers
 cask "flycut"
+cask "font-fira-code-nerd-font"
+cask "font-hack-nerd-font"
 cask "font-inconsolata-dz-for-powerline"
+cask "font-inter"
 cask "font-jetbrains-mono"
-cask "google-cloud-sdk"
+cask "epk/epk/font-sf-mono-nerd-font"
+cask "font-sf-pro"
+cask "font-symbols-only-nerd-font"
+# Set of tools to manage resources and applications hosted on Google Cloud
+cask "gcloud-cli"
+# Cross-platform Git credential storage for multiple hosting providers
+cask "git-credential-manager"
+# Tools to protect your emails and files
+cask "gpg-suite"
+# IDE for Java development - community edition
+cask "intellij-idea-ce"
+# Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
+# Open-source keystroke visualiser
 cask "keycastr"
+# GPU-based terminal emulator
+cask "kitty"
+# Remote desktop client
 cask "microsoft-remote-desktop"
+# Interactive tool for analyzing MongoDB data
 cask "mongodb-compass"
+# Tool to control external monitor brightness & volume
+cask "monitorcontrol"
+# Open source implementation of Microsoft's .NET Framework
+cask "mono-mdk-for-visual-studio"
+# Administration and development platform for PostgreSQL
+cask "pgadmin4"
+# Collaboration platform for API development
+cask "postman"
+# CLI for command-line API management on Postman
+cask "postman-cli"
+# Command-line shell and scripting language
 cask "powershell"
+# Control your tools with a few keystrokes
+cask "raycast"
+# Move and resize windows using keyboard shortcuts or snap areas
+cask "rectangle"
+# Tool that provides consistent, highly configurable symbols for apps
+cask "sf-symbols"
+# Workstation to streamline your accounts, apps, and workflows
+cask "shift"
+# Tool to manage the size and position of windows
+cask "shiftit"
+# Sound and audio controller
+cask "soundsource"
+# Development environment
 cask "vagrant"
+# Integrated development environment
+cask "visual-studio"
+# Open-source code editor
 cask "visual-studio-code"
+# Video communication and virtual meeting platform
+cask "zoom"
+vscode "bierner.markdown-mermaid"
+vscode "bluebrown.yamlfmt"
+vscode "dvirtz.parquet-viewer"
+vscode "editorconfig.editorconfig"
+vscode "esbenp.prettier-vscode"
+vscode "fcrespo82.markdown-table-formatter"
+vscode "github.copilot-chat"
+vscode "github.vscode-github-actions"
+vscode "golang.go"
+vscode "k6.k6"
+vscode "mechatroner.rainbow-csv"
+vscode "ms-azuretools.vscode-azurefunctions"
+vscode "ms-azuretools.vscode-azureresourcegroups"
+vscode "ms-dotnettools.vscode-dotnet-runtime"
+vscode "ms-mssql.data-workspace-vscode"
+vscode "ms-mssql.mssql"
+vscode "ms-mssql.sql-bindings-vscode"
+vscode "ms-mssql.sql-database-projects-vscode"
+vscode "ms-python.debugpy"
+vscode "ms-python.python"
+vscode "ms-python.vscode-pylance"
+vscode "ms-python.vscode-python-envs"
+vscode "ms-toolsai.datawrangler"
+vscode "ms-toolsai.jupyter"
+vscode "ms-toolsai.jupyter-keymap"
+vscode "ms-toolsai.jupyter-renderers"
+vscode "ms-toolsai.vscode-jupyter-cell-tags"
+vscode "ms-toolsai.vscode-jupyter-slideshow"
+vscode "ms-vscode.powershell"
+vscode "redhat.vscode-yaml"
+vscode "sethjensen.synapse-spark-tools"
+vscode "stkb.rewrap"
+vscode "streetsidesoftware.code-spell-checker"
+vscode "synapsevscode.synapse"
+vscode "takumii.markdowntable"
+vscode "tomoyukim.vscode-mermaid-editor"
+vscode "vscodevim.vim"
+vscode "yoavbls.pretty-ts-errors"
+go "github.com/aderant/arise"
+go "sigs.k8s.io/controller-runtime/examples/configfile/builtin"
+go "sigs.k8s.io/controller-runtime/examples/builtins"
+go "sigs.k8s.io/controller-tools/cmd/controller-gen"
+go "github.com/maxbrunsfeld/counterfeiter/v6"
+go "sigs.k8s.io/controller-runtime/examples/crd"
+go "sigs.k8s.io/controller-runtime/examples/configfile/custom"
+go "github.com/openfga/cli/cmd/fga"
+go "github.com/onsi/ginkgo/v2/ginkgo"
+go "github.com/ramya-rao-a/go-outline"
+go "github.com/rogpeppe/godef"
+go "mvdan.cc/gofumpt"
+go "golang.org/x/tools/cmd/goimports"
+go "github.com/golangci/golangci-lint/cmd/golangci-lint"
+go "golang.org/x/tools/gopls"
+go "gotest.tools/gotestsum"
+go "go.k6.io/k6"
+go "sigs.k8s.io/kind"
+go "golang.stackrox.io/kube-linter/cmd/kube-linter"
+go "github.com/yannh/kubeconform/cmd/kubeconform"
+go "github.com/nats-io/natscli/nats"
+go "github.com/nats-io/nats-server/v2"
+go "github.com/openfga/openfga/cmd/openfga"
+go "sigs.k8s.io/controller-runtime/tools/setup-envtest"
+go "honnef.co/go/tools/cmd/staticcheck"
+go "github.com/aderant/stridyn/v2/cmd/stridyn-dev-proxy"
+go "github.com/aderant/stridyn-entity-manager"
+go "github.com/aderant/stridyn-heimdall"
+go "github.com/swaggo/swag/cmd/swag"
+go "github.com/google/yamlfmt/cmd/yamlfmt"
